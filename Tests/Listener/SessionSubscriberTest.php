@@ -21,7 +21,7 @@ class SessionSubscriberTest extends \PHPUnit_Framework_TestCase
                 )
             );
 
-        $this->eventMock = $this->getMockBuilder('Symfony\Component\HttpKernel\Event\GetResponseEvent')
+        $this->eventMock = $this->getMockBuilder('Symfony\Component\HttpKernel\Event\RequestEvent')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -52,8 +52,8 @@ class SessionSubscriberTest extends \PHPUnit_Framework_TestCase
     public function getRequestExpectations()
     {
         return array(
-            array(HttpKernelInterface::MASTER_REQUEST, true, true),
-            array(HttpKernelInterface::MASTER_REQUEST, false, false),
+            array(HttpKernelInterface::MAIN_REQUEST, true, true),
+            array(HttpKernelInterface::MAIN_REQUEST, false, false),
             array(HttpKernelInterface::SUB_REQUEST, false, false),
             array(HttpKernelInterface::SUB_REQUEST, true, false),
         );
